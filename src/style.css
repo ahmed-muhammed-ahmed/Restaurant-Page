@@ -118,3 +118,34 @@ h1 {
   font-size: 2.4rem;
   margin: 2.4rem 0;
 }
+
+/* MENU */
+#tab-content-1 {
+  display: none;
+}
+
+.menu-container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  padding: 9.6rem 0;
+  gap: 4.8rem;
+}
+
+.breakfast,
+.coffee {
+  border-radius: 1.2rem;
+  padding: 5.6rem 4.8rem;
+  background-color: rgba(12, 45, 87, 0.9);
+}
+
+.menu-header {
+  text-align: center;
+  color: #efecec;
+}
+
+.menu-header h3 {
+  font-weight: 700;
+  font-size: 3.2rem;
+  margin-top: 0.5rem;
+  margin-bottom: 4.4rem;
+}
