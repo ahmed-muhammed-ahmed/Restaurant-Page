@@ -1,7 +1,7 @@
 import pizza from "./img/pizza.jpg";
 export default function home() {
   const homeContainer = document.createElement("div");
-  homeContainer.setAttribute("class", "container tab-content");
+  homeContainer.setAttribute("class", "container tab-content active");
   homeContainer.setAttribute("id", "tab-content-1");
 
   const homeContent = document.createElement("div");
