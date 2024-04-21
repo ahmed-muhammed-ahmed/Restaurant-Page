@@ -1,4 +1,4 @@
-import map from "./img/location.jpg";
+import map from "./assets/location.jpg";
 export default function contact() {
   const contactTab = document.createElement("div");
   contactTab.setAttribute("class", "container tab-content");

@@ -1,36 +1,57 @@
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const path = require("path");
-
+const { BundleAnalyzerPlugin } = require("webpack-bundle-analyzer");
 module.exports = {
   mode: "development",
-  entry: "./src/index.js",
+  entry: {
+    bundle: path.resolve(__dirname, "./src/index.js"),
+  },
   output: {
     path: path.resolve(__dirname, "dist"),
-    filename: "bundle.js",
+    filename: "[name].[contenthash].js",
+    clean: true,
+    assetModuleFilename: "images/[name][ext]",
   },
-
+  devtool: "source-map",
+  devServer: {
+    static: {
+      directory: path.resolve(__dirname, "dist"),
+    },
+    port: 8080,
+    open: true,
+    hot: true,
+    compress: true,
+    historyApiFallback: true,
+  },
   module: {
     rules: [
       {
-        test: /\.html$/i,
-        loader: "html-loader",
-      },
-
-      {
         test: /\.css$/i,
-        use: ["style-loader", "css-loader"], // This line specifies loaders, so remove the 'options' property
+        use: ["style-loader", "css-loader"],
       },
 
       {
-        test: /\.(png|jpe?g|gif)$/i,
-        loader: "file-loader",
-        options: {
-          name: "[name].[ext]",
-          outputPath: "img",
+        test: /\.(?:js|mjs|cjs)$/,
+        exclude: /node_modules/,
+        use: {
+          loader: "babel-loader",
+          options: {
+            presets: ["@babel/preset-env"],
+          },
         },
+      },
+      {
+        test: /\.(png|svg|jpg|jpeg|gif)$/i,
+        type: "asset/resource",
       },
     ],
   },
-
-  plugins: [new HtmlWebpackPlugin({ template: "./src/index.html" })],
+  plugins: [
+    new HtmlWebpackPlugin({
+      title: "Restaurant Page",
+      filename: "index.html",
+      template: "./src/index.html",
+    }),
+    new BundleAnalyzerPlugin(),
+  ],
 };

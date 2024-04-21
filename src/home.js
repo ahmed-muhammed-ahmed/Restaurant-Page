@@ -1,4 +1,4 @@
-import pizza from "./img/pizza.jpg";
+import pizza from "./assets/pizza.jpg";
 export default function home() {
   const homeContainer = document.createElement("div");
   homeContainer.setAttribute("class", "container tab-content active");
